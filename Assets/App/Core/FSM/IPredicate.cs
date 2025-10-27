@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Core.FSM
+namespace App.Core.FSM
 {
     public interface IPredicate
     {

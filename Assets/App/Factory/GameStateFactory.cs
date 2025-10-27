@@ -3,7 +3,12 @@ using VContainer;
 
 namespace App.Factory
 {
-    public class GameStateFactory
+    public interface IGameStateFactory
+    {
+        T Create<T>() where T: IGameState;
+    }
+
+    public class GameStateFactory : IGameStateFactory
     {
         private readonly IObjectResolver _objectResolver;
 

@@ -1,4 +1,4 @@
-﻿namespace Core.FSM
+﻿namespace App.Core.FSM
 {
     public interface IState
     {

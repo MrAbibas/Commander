@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Core.FSM
+namespace App.Core.FSM
 {
     public class StateNode
     {

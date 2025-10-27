@@ -1,4 +1,4 @@
-using Core.FSM;
+using App.Core.FSM;
 
 namespace App.GameStates.States
 {

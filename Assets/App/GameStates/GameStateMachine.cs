@@ -1,6 +1,6 @@
+using App.Core.FSM;
 using App.Factory;
 using App.GameStates.States;
-using Core.FSM;
 using VContainer.Unity;
 
 namespace App.GameStates
@@ -8,9 +8,9 @@ namespace App.GameStates
     public class GameStateMachine : StateMachine, IInitializable ,ITickable
     {
         public bool GameplaySceneLoaded { get; set; } = false;
-        private readonly GameStateFactory _stateFactory;
+        private readonly IGameStateFactory _stateFactory;
 
-        public GameStateMachine(GameStateFactory stateFactory)
+        public GameStateMachine(IGameStateFactory stateFactory)
         {
             _stateFactory = stateFactory;
         }
