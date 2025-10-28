@@ -14,7 +14,7 @@ namespace App.LifetimeScopes
             builder.Register<BootstrapGameState>(Lifetime.Singleton);
             builder.Register<GameplayState>(Lifetime.Singleton);
             builder.Register<GameStateFactory>(Lifetime.Singleton).AsImplementedInterfaces();
-            builder.RegisterEntryPoint<GameStateMachine>();
+            builder.RegisterEntryPoint<GameStateMachine>().AsSelf();
             builder.Register<ConfigurationService>(Lifetime.Singleton).AsImplementedInterfaces();
         }
     }

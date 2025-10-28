@@ -7,7 +7,12 @@ namespace App.GameStates.States
     {
         private readonly GameStateMachine _stateMachine;
         private AsyncOperation _loadSceneOperation;
-        
+
+        public BootstrapGameState(GameStateMachine stateMachine)
+        {
+            _stateMachine = stateMachine;
+        }
+
         public void Enter()
         {
              _loadSceneOperation = SceneManager.LoadSceneAsync("GameplayScene");

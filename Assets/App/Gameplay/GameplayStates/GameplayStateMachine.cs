@@ -10,7 +10,12 @@ namespace App.Gameplay.GameplayStates
         private readonly IGameplayStateFactory _stateFactory;
         public bool LevelLoaded { get; set; }
         public bool Paused { get; set; }
-        
+
+        public GameplayStateMachine(IGameplayStateFactory stateFactory)
+        {
+            _stateFactory = stateFactory;
+        }
+
         public void Initialize()
         {
             var loadLevelState = _stateFactory.Create<LoadLevelGameplayState>();

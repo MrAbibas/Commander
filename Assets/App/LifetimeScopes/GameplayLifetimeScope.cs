@@ -22,7 +22,7 @@ namespace App.LifetimeScopes
             builder.Register<MainLoopGameplayState>(Lifetime.Singleton);
             builder.Register<PauseGameplayState>(Lifetime.Singleton);
             builder.Register<GameplayStateFactory>(Lifetime.Singleton).AsImplementedInterfaces();
-            builder.RegisterEntryPoint<GameplayStateMachine>();
+            builder.RegisterEntryPoint<GameplayStateMachine>().AsSelf();
             
             builder.Register<EntityFactory>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<PlayerProvider>(Lifetime.Singleton).AsImplementedInterfaces();
