@@ -15,7 +15,7 @@ namespace App.Gameplay.Systems
 
         public void Tick()
         {
-            MoveDirection = Joystick.current != null ? Joystick.current.stick.ReadValue() : Vector2.zero;
+            MoveDirection = Gamepad.current != null ? Gamepad.current.leftStick.ReadValue() : Vector2.zero;
         }
     }
 }

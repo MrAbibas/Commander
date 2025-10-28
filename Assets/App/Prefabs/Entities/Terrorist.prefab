@@ -23,14 +23,14 @@ PrefabInstance:
     - target: {fileID: 8466187597525509794, guid: 8b4e228d21d30434594d67f7f4036e0b, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: ece9a990c8a63ad44b01264b5a4c22d6, type: 2}
+      objectReference: {fileID: 22100000, guid: adfda585843352440ba4cf4e5d11566b, type: 2}
     - target: {fileID: 8466187597525509794, guid: 8b4e228d21d30434594d67f7f4036e0b, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8466187597525509795, guid: 8b4e228d21d30434594d67f7f4036e0b, type: 3}
       propertyPath: m_Name
-      value: TerroristDefault Variant
+      value: Terrorist
       objectReference: {fileID: 0}
     - target: {fileID: 8466187597525509821, guid: 8b4e228d21d30434594d67f7f4036e0b, type: 3}
       propertyPath: m_LocalPosition.x

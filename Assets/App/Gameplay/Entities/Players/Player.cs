@@ -3,6 +3,7 @@ using App.Core.FSM;
 using App.Gameplay.Entities.States;
 using App.Gameplay.Systems;
 using UnityEngine;
+using VContainer;
 
 namespace App.Gameplay.Entities.Players
 {
@@ -10,6 +11,12 @@ namespace App.Gameplay.Entities.Players
     {
         private IPlayerInputSystem _input;
         private Vector3 _moveDirection;
+
+        [Inject]
+        public void Construct(IPlayerInputSystem input)
+        {
+            _input = input;
+        }
 
         private void Awake()
         {
@@ -40,10 +47,13 @@ namespace App.Gameplay.Entities.Players
         {
             Vector2 input = _input.MoveDirection;
             
-            _moveDirection = new Vector3(input.x, 0f, input.y);
-            _moveDirection = transform.TransformDirection(_moveDirection);
-            _moveDirection *= speed;
-            characterController.Move(_moveDirection * Time.deltaTime);
+            // _moveDirection = new Vector3(input.x, 0f, input.y);
+            // _moveDirection = transform.TransformDirection(_moveDirection);
+            // _moveDirection *= speed;
+            Vector3 lookDirection = new Vector3(input.x, 0f, input.y);
+            Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
+            transform.rotation = targetRotation;
+            characterController.Move(transform.forward * (speed * Time.deltaTime));
         }
     }
 }
