@@ -9,7 +9,7 @@ namespace App.Factory
 {
     public interface IEntityFactory
     {
-        T Create<T>(EntityId entityId) where T : Entity;
+        T Create<T>(EntityId entityId) where T : Character;
     }
 
     public class EntityFactory : IEntityFactory
@@ -23,7 +23,7 @@ namespace App.Factory
             _entitiesConfiguration = configurationService.GetConfiguration<EntitiesConfiguration>();
         }
 
-        public T Create<T>(EntityId entityId) where T: Entity
+        public T Create<T>(EntityId entityId) where T: Character
         {
             var prefab = _entitiesConfiguration.Entities[entityId] as T;
             return _objectResolver.Instantiate(prefab);

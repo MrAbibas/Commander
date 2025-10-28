@@ -10,6 +10,6 @@ namespace App.Gameplay.Configurations
     public class EntitiesConfiguration: Configuration
     {
         [field: SerializeField]
-        public SerializedDictionary<EntityId, Entity> Entities { get; private set; }
+        public SerializedDictionary<EntityId, Character> Entities { get; private set; }
     }
 }

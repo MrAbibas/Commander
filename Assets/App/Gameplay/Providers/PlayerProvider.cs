@@ -1,4 +1,5 @@
 ﻿using App.Gameplay.Entities;
+using App.Gameplay.Entities.Players;
 
 namespace App.Gameplay.Providers
 {

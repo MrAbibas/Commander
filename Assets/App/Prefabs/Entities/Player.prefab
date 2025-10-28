@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3672464766904752574, guid: 41bc4101dfc742d44ab99e73c9860930, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3672464766904752575, guid: 41bc4101dfc742d44ab99e73c9860930, type: 3}
       propertyPath: m_Name
       value: Player
@@ -59,6 +63,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3672464766904752575, guid: 41bc4101dfc742d44ab99e73c9860930, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7882729609204129558}
+    - targetCorrespondingSourceObject: {fileID: 3672464766904752575, guid: 41bc4101dfc742d44ab99e73c9860930, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4611832871050195219}
   m_SourcePrefab: {fileID: 100100000, guid: 41bc4101dfc742d44ab99e73c9860930, type: 3}
 --- !u!1 &3780660507269135518 stripped
 GameObject:
@@ -77,3 +84,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 679766f3115567141822df5c0551060d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: App::App.Gameplay.Entities.Player
+  speed: 3
+  characterController: {fileID: 4611832871050195219}
+  animator: {fileID: 3780660507269135519}
+--- !u!143 &4611832871050195219
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3780660507269135518}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!95 &3780660507269135519 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3672464766904752574, guid: 41bc4101dfc742d44ab99e73c9860930, type: 3}
+  m_PrefabInstance: {fileID: 468565178613572897}
+  m_PrefabAsset: {fileID: 0}
