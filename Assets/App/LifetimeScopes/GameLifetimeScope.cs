@@ -1,6 +1,7 @@
 using App.Factory;
 using App.GameStates;
 using App.GameStates.States;
+using App.Services;
 using VContainer;
 using VContainer.Unity;
 
@@ -14,6 +15,7 @@ namespace App.LifetimeScopes
             builder.Register<GameplayState>(Lifetime.Singleton);
             builder.Register<GameStateFactory>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.RegisterEntryPoint<GameStateMachine>();
+            builder.Register<ConfigurationService>(Lifetime.Singleton).AsImplementedInterfaces();
         }
     }
 }
