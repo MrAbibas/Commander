@@ -1,4 +1,5 @@
-﻿using App.GameStates.States;
+﻿using App.Gameplay.GameplayStates;
+using App.GameStates.States;
 using VContainer;
 
 namespace App.Factory
