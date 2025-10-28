@@ -10,7 +10,8 @@ namespace App.Gameplay.Entities
         [SerializeField] protected Animator animator;
         protected StateMachine StateMachine;
         protected Character Target;
-        
+        public bool IsAlive { get; set; }
+
         public virtual void HandleMovement(){}
 
         public abstract bool IsMoving();
