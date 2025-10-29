@@ -1,6 +1,7 @@
 ﻿using App.Factory;
 using App.Gameplay.Entities;
-using App.Gameplay.Entities.Players;
+using App.Gameplay.Entities.Characters;
+using App.Gameplay.Entities.Characters.Players;
 using App.Gameplay.Providers;
 using Unity.Cinemachine;
 

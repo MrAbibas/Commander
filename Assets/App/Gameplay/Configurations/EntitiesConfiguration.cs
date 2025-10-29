@@ -1,8 +1,9 @@
 ﻿using App.Core;
 using App.Gameplay.Entities;
+using App.Gameplay.Entities.Characters;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
-using EntityId = App.Gameplay.Entities.EntityId;
+using EntityId = App.Gameplay.Entities.Characters.EntityId;
 
 namespace App.Gameplay.Configurations
 {

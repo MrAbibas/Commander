@@ -1,7 +1,7 @@
 ﻿using App.Core.FSM;
 using UnityEngine;
 
-namespace App.Gameplay.Entities.States
+namespace App.Gameplay.Entities.Characters.States
 {
     public class BaseState: IState
     {

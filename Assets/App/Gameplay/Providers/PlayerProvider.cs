@@ -1,5 +1,5 @@
 ﻿using App.Gameplay.Entities;
-using App.Gameplay.Entities.Players;
+using App.Gameplay.Entities.Characters.Players;
 
 namespace App.Gameplay.Providers
 {

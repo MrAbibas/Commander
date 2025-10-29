@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace App.Gameplay.Entities.States
+namespace App.Gameplay.Entities.Characters.States
 {
     public class RunState: BaseState
     {

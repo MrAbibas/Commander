@@ -1,11 +1,10 @@
-using System;
 using App.Core.FSM;
-using App.Gameplay.Entities.States;
+using App.Gameplay.Entities.Characters.States;
 using App.Gameplay.Systems;
 using UnityEngine;
 using VContainer;
 
-namespace App.Gameplay.Entities.Players
+namespace App.Gameplay.Entities.Characters.Players
 {
     public class Player : Character
     {
