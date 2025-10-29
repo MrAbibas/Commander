@@ -1,7 +1,7 @@
 ﻿using App.Core;
+using App.Gameplay.Entities.Characters;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
-using EntityId = App.Gameplay.Entities.Characters.EntityId;
 
 namespace App.Gameplay.Configurations
 {
@@ -9,6 +9,6 @@ namespace App.Gameplay.Configurations
     public class CombatConfiguration: Configuration
     {
         [field: SerializeField]
-        public SerializedDictionary<EntityId, float> Ranges { get; private set; }
+        public SerializedDictionary<EntityID, float> Ranges { get; private set; }
     }
 }

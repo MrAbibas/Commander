@@ -5,7 +5,7 @@ namespace App.Gameplay.Entities.Characters
 {
     public abstract class Character : MonoBehaviour
     {
-        [field: SerializeField] public EntityId EntityId { get; private set; }
+        [field: SerializeField] public EntityID EntityId { get; private set; }
         [SerializeField] protected float speed;
         [SerializeField] protected CharacterController characterController;
         [SerializeField] protected Animator animator;
@@ -20,7 +20,7 @@ namespace App.Gameplay.Entities.Characters
         public void SetTarget(Character target) => Target = target;
     }
 
-    public enum EntityId
+    public enum EntityID
     {
         Player,
         

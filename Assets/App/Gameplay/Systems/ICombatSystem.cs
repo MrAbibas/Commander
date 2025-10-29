@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using App.Gameplay.Configurations;
 using App.Gameplay.Entities;
+using App.Gameplay.Entities.Characters;
 using App.Gameplay.Providers;
 using UnityEngine;
 using UnityEngine.Events;
-using EntityId = App.Gameplay.Entities.Characters.EntityId;
 
 namespace App.Gameplay.Systems
 {
@@ -45,7 +45,7 @@ namespace App.Gameplay.Systems
             Vector3 enemyPos;
             float distance = 0;
             float enemyRange = 0;
-            float playerRange = _combatConfiguration.Ranges[EntityId.Player];
+            float playerRange = _combatConfiguration.Ranges[EntityID.Player];
             foreach (var formation in _enemyFormations)
             {
                 foreach (var enemy in formation.Characters)

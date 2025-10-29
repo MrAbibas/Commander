@@ -31,7 +31,7 @@ namespace App.Gameplay.GameplayStates.States
         public void Enter()
         {
             _stateMachine.LevelLoaded = true;
-            var player = _entityFactory.Create<Player>(EntityId.Player);
+            var player = _entityFactory.Create<Player>(EntityID.Player);
             player.transform.position = _playerSpawnPoint.transform.position;
             _playerProvider.SetPlayer(player);
             _camera.Target.TrackingTarget = player.transform;

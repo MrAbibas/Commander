@@ -3,7 +3,6 @@ using App.Gameplay.Entities;
 using App.Gameplay.Entities.Characters;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
-using EntityId = App.Gameplay.Entities.Characters.EntityId;
 
 namespace App.Gameplay.Configurations
 {
@@ -11,6 +10,6 @@ namespace App.Gameplay.Configurations
     public class EntitiesConfiguration: Configuration
     {
         [field: SerializeField]
-        public SerializedDictionary<EntityId, Character> Entities { get; private set; }
+        public SerializedDictionary<EntityID, Character> Entities { get; private set; }
     }
 }
