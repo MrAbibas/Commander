@@ -11,6 +11,8 @@ namespace App.Gameplay.Entities
         [field: SerializeField]
         public List<AICharacter> Characters { get; private set; } = new();
 
+        public bool IsFull => Characters.Count >= points.Count;
+
         public bool CheckIsAlive()
         {
             for (int i = 0; i < points.Count; i++)
