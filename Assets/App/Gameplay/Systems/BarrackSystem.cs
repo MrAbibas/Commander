@@ -3,6 +3,7 @@ using App.Factory;
 using App.Gameplay.Entities;
 using App.Gameplay.Entities.Barracks;
 using App.Gameplay.Entities.Characters;
+using UnityEngine;
 using VContainer.Unity;
 
 namespace App.Gameplay.Systems
@@ -24,6 +25,15 @@ namespace App.Gameplay.Systems
 
         public void Initialize()
         {
+            foreach (var barrackPlace in _barrackPlaces)
+            {
+                barrackPlace.onCurrencyAdded.AddListener(OnAddCurrencyToBarrackPlaceHandler);
+            }
+        }
+
+        private void OnAddCurrencyToBarrackPlaceHandler(BarrackPlace barrackPlace)
+        {
+            Debug.Log("Adding currency to Barrack place");
         }
 
         public void Tick()

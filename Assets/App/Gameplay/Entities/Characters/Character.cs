@@ -7,7 +7,6 @@ namespace App.Gameplay.Entities.Characters
     {
         [field: SerializeField] public EntityID EntityId { get; private set; }
         [SerializeField] protected float speed;
-        [SerializeField] protected CharacterController characterController;
         [SerializeField] protected Animator animator;
         protected StateMachine StateMachine;
         protected Character Target;
@@ -23,6 +22,7 @@ namespace App.Gameplay.Entities.Characters
     public enum EntityID
     {
         Player,
-        
+        Terrorist,
+        Hoodie
     }
 }

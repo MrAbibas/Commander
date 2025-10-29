@@ -8,6 +8,7 @@ namespace App.Gameplay.Entities.Characters.Players
 {
     public class Player : Character
     {
+        [SerializeField] protected CharacterController characterController;
         private IPlayerInputSystem _input;
         private Vector3 _moveDirection;
 

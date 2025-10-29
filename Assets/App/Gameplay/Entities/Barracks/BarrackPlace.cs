@@ -6,14 +6,14 @@ namespace App.Gameplay.Entities.Barracks
 {
     public class BarrackPlace : MonoBehaviour
     {
-        public UnityEvent onCurrencyAdded = new();
+        public UnityEvent<BarrackPlace> onCurrencyAdded = new();
         public Barrack Barrack { get; private set; }
         public Currency Currency { get; private set; }
 
         public void AddCurrency(Currency currency)
         {
             Currency += currency;
-            onCurrencyAdded?.Invoke();
+            onCurrencyAdded?.Invoke(this);
         }
     }
 }

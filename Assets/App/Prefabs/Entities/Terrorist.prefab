@@ -75,5 +75,59 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8466187597525509795, guid: 8b4e228d21d30434594d67f7f4036e0b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2485346216374688166}
+    - targetCorrespondingSourceObject: {fileID: 8466187597525509795, guid: 8b4e228d21d30434594d67f7f4036e0b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3170628441573344454}
   m_SourcePrefab: {fileID: 100100000, guid: 8b4e228d21d30434594d67f7f4036e0b, type: 3}
+--- !u!1 &296001928125328712 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8466187597525509795, guid: 8b4e228d21d30434594d67f7f4036e0b, type: 3}
+  m_PrefabInstance: {fileID: 8171338338317290475}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2485346216374688166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296001928125328712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14312fff0a1a48a3a4b93661f7fc372c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: App::App.Gameplay.Entities.Characters.AICharacter
+  <EntityId>k__BackingField: 1
+  speed: 3
+  animator: {fileID: 296001928125328713}
+  agent: {fileID: 3170628441573344454}
+--- !u!195 &3170628441573344454
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 296001928125328712}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!95 &296001928125328713 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8466187597525509794, guid: 8b4e228d21d30434594d67f7f4036e0b, type: 3}
+  m_PrefabInstance: {fileID: 8171338338317290475}
+  m_PrefabAsset: {fileID: 0}
