@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace App.Gameplay.Entities.Currencies
+﻿namespace App.Gameplay.Entities.Currencies
 {
     public class Currency
     {
@@ -12,10 +10,10 @@ namespace App.Gameplay.Entities.Currencies
             valueA.Count += valueB.Count;
             return valueA;
         }
-    }
-
-    public enum CurrencyType
-    {
-        Soft
+        public static Currency operator-(Currency valueA, Currency valueB)
+        {
+            valueA.Count -= valueB.Count;
+            return valueA;
+        }
     }
 }
