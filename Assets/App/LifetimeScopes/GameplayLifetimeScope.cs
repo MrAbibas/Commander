@@ -31,6 +31,9 @@ namespace App.LifetimeScopes
             builder.Register<EntityFactory>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<PlayerProvider>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<PlayerInputSystem>(Lifetime.Singleton).AsImplementedInterfaces();
+
+            builder.Register<BuildingFactory>(Lifetime.Singleton).AsImplementedInterfaces();
+            builder.RegisterEntryPoint<BarrackSystem>();
             
             builder.Register<UIAssetsProvider>(Lifetime.Singleton);
             builder.Register<UIFactory>(Lifetime.Singleton);

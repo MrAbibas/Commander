@@ -16,7 +16,7 @@ namespace App.UI.ChooseBuildingWindow
             public Sprite icon;
             public string title;
         }
-        public UnityEvent<BuildingId> onBuildingSelected;
+        public UnityEvent<BuildingId> onBuildingChoosed;
         [SerializeField] private RectTransform _content;
         [SerializeField] private BuildingView _viewPrefab;
         [SerializeField] private SerializedDictionary<BuildingId, BuildingViewConfiguration> configs;
@@ -39,7 +39,7 @@ namespace App.UI.ChooseBuildingWindow
         private void OnBuildingSelected(BuildingId buildingId)
         {
             if(IsOpened == false) return;
-            onBuildingSelected?.Invoke(buildingId);
+            onBuildingChoosed?.Invoke(buildingId);
             CloseAnim();
         }
     }

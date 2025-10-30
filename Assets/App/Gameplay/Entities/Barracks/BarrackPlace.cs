@@ -6,12 +6,10 @@ namespace App.Gameplay.Entities.Barracks
 {
     public class BarrackPlace : MonoBehaviour
     {
-        public UnityEvent<BarrackPlace> onCurrencyAdded = new();
-        [SerializeField]
-        private CurrencyStackTarget currencyStackTarget;
+        public UnityEvent<BarrackPlace> onPlaceBought = new();
+        [SerializeField] private CurrencyStackTarget currencyStackTarget;
         public Barrack Barrack { get; private set; }
-        [field: SerializeField]
-        public Currency Price { get; private set; }
+        [field: SerializeField] public Currency Price { get; private set; }
 
         private void Start()
         {
@@ -26,7 +24,15 @@ namespace App.Gameplay.Entities.Barracks
 
         private void OnCurrencyAdded()
         {
-            onCurrencyAdded?.Invoke(this);
+            if (Price.CurrencyType == currencyStackTarget.Currency.CurrencyType &&
+                Price.Count <= currencyStackTarget.Currency.Count)
+                onPlaceBought?.Invoke(this);
+        }
+
+        public void Build(Barrack barrack)
+        {
+            Barrack = barrack;
+            currencyStackTarget.gameObject.SetActive(false);
         }
     }
 }

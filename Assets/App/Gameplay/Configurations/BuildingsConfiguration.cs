@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace App.Gameplay.Configurations
 {
-    public class BarracksConfiguration: Configuration
+    public class BuildingsConfiguration: Configuration
     {
         [field: SerializeField]
         public SerializedDictionary<BuildingId, Barrack> Prefabs { get; private set; }

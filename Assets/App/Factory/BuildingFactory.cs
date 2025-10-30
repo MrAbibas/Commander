@@ -7,21 +7,21 @@ using VContainer.Unity;
 
 namespace App.Factory
 {
-    public class BarrackFactory: IBarrackFactory
+    public class BuildingFactory: IBarrackFactory
     {
         private readonly IObjectResolver _objectResolver;
-        private readonly BarracksConfiguration _barracksConfiguration;
+        private readonly BuildingsConfiguration _buildingsConfiguration;
         
-        public BarrackFactory(IObjectResolver objectResolver, IConfigurationService configurationService)
+        public BuildingFactory(IObjectResolver objectResolver, IConfigurationService configurationService)
         {
             _objectResolver = objectResolver;
-            BarracksConfiguration barracksConfiguration =
-                configurationService.GetConfiguration<BarracksConfiguration>();
+            BuildingsConfiguration buildingsConfiguration =
+                configurationService.GetConfiguration<BuildingsConfiguration>();
         }
 
         public T Create<T>(BuildingId buildingId) where T : Barrack
         {
-            T prefab = _barracksConfiguration.Prefabs[buildingId] as T;
+            T prefab = _buildingsConfiguration.Prefabs[buildingId] as T;
             return _objectResolver.Instantiate(prefab);
 
         }

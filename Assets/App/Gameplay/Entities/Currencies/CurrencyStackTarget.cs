@@ -22,9 +22,4 @@ namespace App.Gameplay.Entities.Currencies
             newCurrency.Despawn();
         }
     }
-
-    public class CurrencyStackSource : CurrencyStack
-    {
-        
-    }
 }
