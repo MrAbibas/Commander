@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b9801085c1dd4aa3300cef594c90d, type: 3}
   m_Name: UIAssetsConfig
   m_EditorClassIdentifier: App::App.UI.UIAssetsConfig
-  uiRoot: {fileID: 0}
+  uiRoot: {fileID: 3260307045025571675, guid: c221332fe47ad6d478e64f1ecd84223c, type: 3}
   Windows:
-    _serializedList: []
+    _serializedList:
+    - Key:
+        _assemblyQualifiedName: App.UI.ChooseBuildingWindow.ChooseBuildingWindow,
+          App, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      Value: {fileID: 2019422121945091110, guid: 641caf3cb102371439d728896b37cd89, type: 3}

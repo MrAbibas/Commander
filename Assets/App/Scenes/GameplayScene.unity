@@ -14288,7 +14288,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0935673dbbaf4052ba1c7568bf9f1734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: App::App.Gameplay.Entities.Barracks.BarrackPlace
-  onCurrencyAdded:
+  onPlaceBought:
     m_PersistentCalls:
       m_Calls: []
   currencyStackTarget: {fileID: 381583885}
