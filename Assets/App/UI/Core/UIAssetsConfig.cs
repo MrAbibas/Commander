@@ -3,9 +3,9 @@ using App.Utils;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
-namespace App.UI
+namespace App.UI.Core
 {
-    [CreateAssetMenu(fileName = "UIAssetsConfig", menuName = "Game/UIAssetsConfig", order = 0)]
+    [CreateAssetMenu(fileName = "UIAssetsConfig", menuName = "Configurations/UIAssetsConfig", order = 0)]
     public class UIAssetsConfig : ScriptableObject
     {
         public GameObject uiRoot;

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace App.UI
+namespace App.UI.Core
 {
     [RequireComponent(typeof(WindowAnimator))]
     public class BaseWindow : MonoBehaviour

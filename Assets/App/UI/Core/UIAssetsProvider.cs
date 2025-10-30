@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace App.UI
+namespace App.UI.Core
 {
     public class UIAssetsProvider
     {

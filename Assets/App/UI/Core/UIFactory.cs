@@ -2,7 +2,7 @@
 using VContainer;
 using VContainer.Unity;
 
-namespace App.UI
+namespace App.UI.Core
 {
     public class UIFactory
     {

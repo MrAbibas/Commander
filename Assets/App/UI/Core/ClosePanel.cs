@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-namespace App.UI
+namespace App.UI.Core
 {
     public class ClosePanel : MonoBehaviour, IPointerClickHandler
     {

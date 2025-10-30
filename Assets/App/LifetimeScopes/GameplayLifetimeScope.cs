@@ -4,6 +4,8 @@ using App.Gameplay.GameplayStates.States;
 using App.Gameplay.Level;
 using App.Gameplay.Providers;
 using App.Gameplay.Systems;
+using App.UI;
+using App.UI.Core;
 using Unity.Cinemachine;
 using UnityEngine;
 using VContainer;
@@ -29,6 +31,9 @@ namespace App.LifetimeScopes
             builder.Register<EntityFactory>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<PlayerProvider>(Lifetime.Singleton).AsImplementedInterfaces();
             builder.Register<PlayerInputSystem>(Lifetime.Singleton).AsImplementedInterfaces();
+            
+            builder.Register<UIAssetsProvider>(Lifetime.Singleton);
+            builder.Register<UIFactory>(Lifetime.Singleton);
         }
     }
 }
