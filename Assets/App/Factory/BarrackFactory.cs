@@ -19,9 +19,9 @@ namespace App.Factory
                 configurationService.GetConfiguration<BarracksConfiguration>();
         }
 
-        public T Create<T>(BarrackId barrackId) where T : Barrack
+        public T Create<T>(BuildingId buildingId) where T : Barrack
         {
-            T prefab = _barracksConfiguration.Prefabs[barrackId] as T;
+            T prefab = _barracksConfiguration.Prefabs[buildingId] as T;
             return _objectResolver.Instantiate(prefab);
 
         }

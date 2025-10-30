@@ -1,7 +1,7 @@
 ﻿namespace App.Gameplay.Entities.Barracks
 {
-    public enum BarrackId
+    public enum BuildingId
     {
-        
+        BarrackWithHoodie
     }
 }

@@ -8,6 +8,6 @@ namespace App.Gameplay.Configurations
     public class BarracksConfiguration: Configuration
     {
         [field: SerializeField]
-        public SerializedDictionary<BarrackId, Barrack> Prefabs { get; private set; }
+        public SerializedDictionary<BuildingId, Barrack> Prefabs { get; private set; }
     }
 }

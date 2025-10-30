@@ -4,6 +4,6 @@ namespace App.Gameplay.Systems
 {
     public interface IBarrackFactory
     {
-        T Create<T>(BarrackId barrackId) where T : Barrack;
+        T Create<T>(BuildingId buildingId) where T : Barrack;
     }
 }
