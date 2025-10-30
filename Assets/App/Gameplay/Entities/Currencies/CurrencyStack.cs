@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace App.Gameplay.Entities.Currencies
 {
     public class CurrencyStack : MonoBehaviour
     {
+        public UnityEvent onCurrencyAdded = new ();
+        public UnityEvent onCurrencyRemoved  = new ();
+        
         [SerializeField]
         protected List<CurrencyCollectable> currencies = new();
         [SerializeField]
@@ -16,7 +20,7 @@ namespace App.Gameplay.Entities.Currencies
         private float jumpPower = 2f;
         [SerializeField]
         private float moveDuration = 0.8f;
-        [SerializeField] private int size;
+        [SerializeField] protected int size;
         public List<CurrencyCollectable> CurrenciesInTransfer { get; protected set; } = new();
         public bool IsFool => currencies.Count + CurrenciesInTransfer.Count >= size;
         
