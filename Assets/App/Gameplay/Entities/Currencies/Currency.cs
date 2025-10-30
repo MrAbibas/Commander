@@ -1,5 +1,8 @@
-﻿namespace App.Gameplay.Entities.Currencies
+﻿using System;
+
+namespace App.Gameplay.Entities.Currencies
 {
+    [Serializable]
     public class Currency
     {
         public int Count;

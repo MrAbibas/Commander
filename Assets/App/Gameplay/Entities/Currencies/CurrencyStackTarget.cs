@@ -3,14 +3,16 @@ using UnityEngine;
 
 namespace App.Gameplay.Entities.Currencies
 {
-    public class CurrencyStackForBuy : CurrencyStack
+    public class CurrencyStackTarget : CurrencyStack
     {
         [SerializeField] private TMP_Text countText;
         public Currency Currency { get; set; }
 
-        public void SetTargetCount(int targetCount)
+        public void SetTargetCount(Currency currency)
         {
-            size = targetCount;
+            Currency = new Currency() { CurrencyType = currency.CurrencyType };
+            size = currency.Count;
+            countText.text = (size - Currency.Count).ToString();
         }
         
         public override void AddCurrency(CurrencyCollectable newCurrency)
@@ -19,5 +21,10 @@ namespace App.Gameplay.Entities.Currencies
             countText.text = (size - Currency.Count).ToString();
             newCurrency.Despawn();
         }
+    }
+
+    public class CurrencyStackSource : CurrencyStack
+    {
+        
     }
 }

@@ -8,19 +8,20 @@ namespace App.Gameplay.Entities.Barracks
     {
         public UnityEvent<BarrackPlace> onCurrencyAdded = new();
         [SerializeField]
-        private CurrencyStackForBuy currencyStackForBuy;
+        private CurrencyStackTarget currencyStackTarget;
         public Barrack Barrack { get; private set; }
+        [field: SerializeField]
         public Currency Price { get; private set; }
 
         private void Start()
         {
-            currencyStackForBuy.onCurrencyAdded.AddListener(OnCurrencyAdded);
-            currencyStackForBuy.SetTargetCount(Price.Count);
+            currencyStackTarget.onCurrencyAdded.AddListener(OnCurrencyAdded);
+            currencyStackTarget.SetTargetCount(Price);
         }
 
         private void OnDestroy()
         {
-            currencyStackForBuy.onCurrencyAdded.RemoveListener(OnCurrencyAdded);
+            currencyStackTarget.onCurrencyAdded.RemoveListener(OnCurrencyAdded);
         }
 
         private void OnCurrencyAdded()

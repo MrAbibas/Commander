@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using DG.Tweening;
 using UnityEngine;
@@ -16,13 +15,16 @@ namespace App.Gameplay.Entities.Currencies
         protected List<CurrencyCollectable> currencies = new();
         [SerializeField]
         protected Vector3 currencySize = new Vector3(0.8f, 0.1f, 0.4f);
-        [SerializeField]
-        private float jumpPower = 2f;
-        [SerializeField]
-        private float moveDuration = 0.8f;
         [SerializeField] protected int size;
+        
+        [Header("TransferAnimation")]
+        [SerializeField] private float jumpPower = 2f;
+        [SerializeField] private float moveDuration = 0.8f;
+        [SerializeField] private float scaleDuration = 0.1f;
+        [SerializeField] private float maxScale = 1.3f;
         public List<CurrencyCollectable> CurrenciesInTransfer { get; protected set; } = new();
         public bool IsFool => currencies.Count + CurrenciesInTransfer.Count >= size;
+        public bool IsEmpty => currencies.Count == 0;
         
         private void Start()
         {
@@ -37,39 +39,70 @@ namespace App.Gameplay.Entities.Currencies
         public virtual void AddCurrency(CurrencyCollectable newCurrency)
         {
             CurrenciesInTransfer.Remove(newCurrency);
-            newCurrency.transform.SetParent(transform);
-            newCurrency.transform.position = GetCurrencyPosition();
-            newCurrency.transform.rotation = GetCurrencyRotation();
+            if (newCurrency.transform.parent != transform)
+                newCurrency.transform.SetParent(transform, true);
+            
             currencies.Add(newCurrency);
         }
 
-        public virtual Vector3 GetCurrencyPosition() => transform.position;
-        public virtual Quaternion GetCurrencyRotation() => transform.rotation;
+        public virtual void RemoveCurrency(CurrencyCollectable currency)
+        {
+            currencies.Remove(currency);
+            for(int i = 0; i < currencies.Count; i++)
+                currencies[i].transform.localPosition = GetCurrencyPosition(i);
+        }
 
-        public virtual Sequence GetTransferSequence(CurrencyCollectable currency, CurrencyStack otherStack)
+        public virtual Vector3 GetNewCurrencyPosition() => Vector3.zero;
+        public virtual Vector3 GetCurrencyPosition(int ind) => Vector3.zero;
+        public virtual Quaternion GetNewCurrencyRotation() => Quaternion.identity;
+
+        public virtual Sequence GetTransferSequence(CurrencyCollectable currency, CurrencyStack targetStack)
         {
             Sequence moveSequence = DOTween.Sequence();
-            
-            moveSequence.Append(currency.transform.DOScale(1.2f, 0.2f));
-            moveSequence.Append(currency.transform.DOJump(
-                otherStack.GetCurrencyPosition(), 
+            Vector3 scale = currency.transform.localScale;
+            moveSequence.Append(currency.transform.DOScale(scale * maxScale, scaleDuration));
+            moveSequence.AppendCallback(() => currency.transform.SetParent(targetStack.transform, true));
+            var endPos = targetStack.GetNewCurrencyPosition();
+            moveSequence.Append(currency.transform.DOLocalJump(
+                endPos, 
                 jumpPower, 
                 1, 
                 moveDuration
-            ).SetEase(Ease.OutQuad));
+            ).SetEase(Ease.OutExpo));
             
-            moveSequence.Join(currency.transform.DORotate(otherStack.GetCurrencyRotation().eulerAngles, 0.2f));
-            moveSequence.Join(currency.transform.DOScale(1f, 0.3f).SetDelay(moveDuration - 0.3f));
+            moveSequence.Join(currency.transform.DOLocalRotate(targetStack.GetNewCurrencyRotation().eulerAngles, moveDuration/2f).SetDelay(scaleDuration));
+            moveSequence.Join(currency.transform.DOScale(scale, moveDuration - scaleDuration).SetDelay(scaleDuration));
             
-            moveSequence.OnComplete(() => otherStack.AddCurrency(currency));
+            moveSequence.OnComplete(() => targetStack.AddCurrency(currency));
             return moveSequence;
         }
 
         public void TransferToOtherStack(CurrencyCollectable collectable, CurrencyStack otherStack)
         {
-            currencies.Remove(collectable);
+            otherStack.WaitTransfer(collectable);
+            RemoveCurrency(collectable);
             collectable.transform.SetParent(null);
             Sequence moveSequence = GetTransferSequence(collectable, otherStack);
+            moveSequence.Play();
+        }
+
+        public void TransferLastToOtherStack(CurrencyStack otherStack)
+        {
+            TransferToOtherStack(currencies[^1], otherStack);
+        }
+
+        public void TransferLastToOtherStack(CurrencyStack otherStack, CurrencyType type)
+        {
+            var currency = currencies.FindLast((x) => x.Currency.CurrencyType == type);
+            if (currency != null)
+                TransferToOtherStack(currencies[^1], otherStack);
+        }
+
+        public void TransferToStack(CurrencyCollectable collectable)
+        {
+            collectable.transform.SetParent(null);
+            CurrenciesInTransfer.Add(collectable);
+            Sequence moveSequence = GetTransferSequence(collectable, this);
             moveSequence.Play();
         }
     }
