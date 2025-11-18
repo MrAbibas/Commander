@@ -5,7 +5,7 @@ using App.Services;
 using VContainer;
 using VContainer.Unity;
 
-namespace App.Factory
+namespace App.Factories
 {
     public class BuildingFactory: IBarrackFactory
     {

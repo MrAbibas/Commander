@@ -1,8 +1,7 @@
-﻿using App.Gameplay.GameplayStates;
-using App.Gameplay.GameplayStates.States;
+﻿using App.Gameplay.GameplayStates.States;
 using VContainer;
 
-namespace App.Factory
+namespace App.Factories
 {
     public interface IGameplayStateFactory
     {

@@ -18,3 +18,7 @@ MonoBehaviour:
         _assemblyQualifiedName: App.Gameplay.Configurations.EntitiesConfiguration,
           App, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       Value: {fileID: 11400000, guid: d25d52fd76899a143aa5f0745a23c485, type: 2}
+    - Key:
+        _assemblyQualifiedName: App.Gameplay.Configurations.BuildingsConfiguration,
+          App, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      Value: {fileID: 11400000, guid: 53108c03a2e40c14cab7b4a6810140e6, type: 2}

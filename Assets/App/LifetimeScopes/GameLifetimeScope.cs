@@ -1,4 +1,4 @@
-using App.Factory;
+using App.Factories;
 using App.GameStates;
 using App.GameStates.States;
 using App.Services;

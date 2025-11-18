@@ -1,4 +1,7 @@
-﻿using App.Factory;
+﻿using System.Collections.Generic;
+using App.Factories;
+using App.Gameplay.Entities;
+using App.Gameplay.Entities.Barracks;
 using App.Gameplay.GameplayStates;
 using App.Gameplay.GameplayStates.States;
 using App.Gameplay.Level;
@@ -16,12 +19,16 @@ namespace App.LifetimeScopes
     public class GameplayLifetimeScope: LifetimeScope
     {
         [SerializeField] private PlayerSpawnPoint _playerSpawnPoint;
+        [SerializeField] private List<BarrackPlace> _barracks;
+        [SerializeField] private Formation _friendlyFormation;
         [SerializeField] private CinemachineCamera _camera;
         
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterInstance(_playerSpawnPoint);
             builder.RegisterInstance(_camera);
+            builder.RegisterInstance(_friendlyFormation);
+            builder.RegisterInstance(_barracks);
             builder.Register<LoadLevelGameplayState>(Lifetime.Singleton);
             builder.Register<MainLoopGameplayState>(Lifetime.Singleton);
             builder.Register<PauseGameplayState>(Lifetime.Singleton);

@@ -1,5 +1,5 @@
 ﻿using App.Core.FSM;
-using App.Factory;
+using App.Factories;
 using App.Gameplay.GameplayStates.States;
 using VContainer.Unity;
 

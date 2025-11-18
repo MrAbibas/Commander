@@ -12,12 +12,10 @@ namespace App.UI.Core
         private readonly UIAssetsProvider _assetsProvider;
 
         public UIFactory(IObjectResolver resolver,
-            UIAssetsProvider assetsProvider,
-            GameObject uiRoot)
+            UIAssetsProvider assetsProvider)
         {
             _resolver = resolver;
             _assetsProvider = assetsProvider;
-            _uiRoot = uiRoot.transform;
         }
 
         public T CreateWindow<T>() where T: BaseWindow

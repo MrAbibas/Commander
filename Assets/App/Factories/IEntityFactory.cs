@@ -1,12 +1,10 @@
 ﻿using App.Gameplay.Configurations;
-using App.Gameplay.Entities;
 using App.Gameplay.Entities.Characters;
-using App.GameStates.States;
 using App.Services;
 using VContainer;
 using VContainer.Unity;
 
-namespace App.Factory
+namespace App.Factories
 {
     public interface IEntityFactory
     {

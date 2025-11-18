@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using App.Factory;
+using App.Factories;
 using App.Gameplay.Entities;
 using App.Gameplay.Entities.Barracks;
 using App.Gameplay.Entities.Characters;

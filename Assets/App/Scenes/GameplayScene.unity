@@ -19156,6 +19156,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1721889829}
+  - component: {fileID: 1721889830}
   m_Layer: 0
   m_Name: IdlePoints
   m_TagString: Untagged
@@ -19188,6 +19189,30 @@ Transform:
   - {fileID: 2100088555}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1721889830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721889828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22aeea387c2143009a716ae1e826b422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: App::App.Gameplay.Entities.Formation
+  points:
+  - {fileID: 674172132}
+  - {fileID: 927198764}
+  - {fileID: 1228672264}
+  - {fileID: 705155073}
+  - {fileID: 1846423480}
+  - {fileID: 693828465}
+  - {fileID: 840579144}
+  - {fileID: 1542715338}
+  - {fileID: 1384297007}
+  - {fileID: 2100088555}
+  <Characters>k__BackingField: []
 --- !u!1001 &1805083853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23188,6 +23213,9 @@ MonoBehaviour:
   autoRun: 1
   autoInjectGameObjects: []
   _playerSpawnPoint: {fileID: 1151222203}
+  _barracks:
+  - {fileID: 1286908079}
+  _friendlyFormation: {fileID: 1721889830}
   _camera: {fileID: 408744895}
 --- !u!4 &1932203444
 Transform:
