@@ -37,7 +37,7 @@ namespace App.Gameplay.Entities.Characters.Components
                 else if (stack is CurrencyStackTarget target && stack.IsFool == false &&
                          currencyStack.IsEmpty == false)
                 {
-                    currencyStack.TransferLastToOtherStack(target, target.Currency.CurrencyType);
+                    currencyStack.TransferLastToOtherStack(target, target.TargetCurrencyType);
                 }
             }
         }

@@ -11,8 +11,9 @@ namespace App.Gameplay.Entities.Currencies
         public UnityEvent onCurrencyAdded = new ();
         public UnityEvent onCurrencyRemoved  = new ();
         
+        public Dictionary<CurrencyType,Currency> Currency { get; protected set; }
         [SerializeField]
-        protected List<CurrencyCollectable> currencies = new();
+        protected List<CurrencyCollectable> currencyCollectables = new();
         [SerializeField]
         protected Vector3 currencySize = new Vector3(0.8f, 0.1f, 0.4f);
         [SerializeField] protected int size;
@@ -23,33 +24,58 @@ namespace App.Gameplay.Entities.Currencies
         [SerializeField] private float scaleDuration = 0.1f;
         [SerializeField] private float maxScale = 1.3f;
         public List<CurrencyCollectable> CurrenciesInTransfer { get; protected set; } = new();
-        public bool IsFool => currencies.Count + CurrenciesInTransfer.Count >= size;
-        public bool IsEmpty => currencies.Count == 0;
+        public bool IsFool => currencyCollectables.Count + CurrenciesInTransfer.Count >= size;
+        public bool IsEmpty => currencyCollectables.Count == 0;
         
         private void Start()
         {
-            currencies = GetComponentsInChildren<CurrencyCollectable>().ToList();
+            currencyCollectables = GetComponentsInChildren<CurrencyCollectable>().ToList();
+            Currency = new ();
+            foreach (var collectable in currencyCollectables)
+                AddCurrency(collectable.Currency);
         }
 
         public void WaitTransfer(CurrencyCollectable collectable)
         {
             CurrenciesInTransfer.Add(collectable);
         }
-        
-        public virtual void AddCurrency(CurrencyCollectable newCurrency)
+
+        public void AddCurrency(Currency currency)
+        {
+            if (Currency.TryGetValue(currency.CurrencyType, out Currency currencyValue))
+                currencyValue += currency;
+            else
+                Currency.Add(currency.CurrencyType,
+                    new Currency() { CurrencyType = currency.CurrencyType, Count = currency.Count });
+
+            onCurrencyAdded.Invoke();
+        }
+
+        public void RemoveCurrency(Currency currency)
+        {
+            if (Currency.TryGetValue(currency.CurrencyType, out Currency currencyValue) == false) return;
+
+            currencyValue -= currency;
+            onCurrencyRemoved.Invoke();
+        }
+
+        public virtual void AddCurrencyCollectible(CurrencyCollectable newCurrency)
         {
             CurrenciesInTransfer.Remove(newCurrency);
             if (newCurrency.transform.parent != transform)
                 newCurrency.transform.SetParent(transform, true);
             
-            currencies.Add(newCurrency);
+            currencyCollectables.Add(newCurrency);
+            AddCurrency(newCurrency.Currency);
         }
 
-        public virtual void RemoveCurrency(CurrencyCollectable currency)
+        public virtual void RemoveCurrencyCollectible(CurrencyCollectable currency)
         {
-            currencies.Remove(currency);
-            for(int i = 0; i < currencies.Count; i++)
-                currencies[i].transform.localPosition = GetCurrencyPosition(i);
+            currencyCollectables.Remove(currency);
+            for(int i = 0; i < currencyCollectables.Count; i++)
+                currencyCollectables[i].transform.localPosition = GetCurrencyPosition(i);
+
+            RemoveCurrency(currency.Currency);
         }
 
         public virtual Vector3 GetNewCurrencyPosition() => Vector3.zero;
@@ -73,14 +99,14 @@ namespace App.Gameplay.Entities.Currencies
             moveSequence.Join(currency.transform.DOLocalRotate(targetStack.GetNewCurrencyRotation().eulerAngles, moveDuration/2f).SetDelay(scaleDuration));
             moveSequence.Join(currency.transform.DOScale(scale, moveDuration - scaleDuration).SetDelay(scaleDuration));
             
-            moveSequence.OnComplete(() => targetStack.AddCurrency(currency));
+            moveSequence.OnComplete(() => targetStack.AddCurrencyCollectible(currency));
             return moveSequence;
         }
 
         public void TransferToOtherStack(CurrencyCollectable collectable, CurrencyStack otherStack)
         {
             otherStack.WaitTransfer(collectable);
-            RemoveCurrency(collectable);
+            RemoveCurrencyCollectible(collectable);
             collectable.transform.SetParent(null);
             Sequence moveSequence = GetTransferSequence(collectable, otherStack);
             moveSequence.Play();
@@ -88,14 +114,14 @@ namespace App.Gameplay.Entities.Currencies
 
         public void TransferLastToOtherStack(CurrencyStack otherStack)
         {
-            TransferToOtherStack(currencies[^1], otherStack);
+            TransferToOtherStack(currencyCollectables[^1], otherStack);
         }
 
         public void TransferLastToOtherStack(CurrencyStack otherStack, CurrencyType type)
         {
-            var currency = currencies.FindLast((x) => x.Currency.CurrencyType == type);
+            var currency = currencyCollectables.FindLast((x) => x.Currency.CurrencyType == type);
             if (currency != null)
-                TransferToOtherStack(currencies[^1], otherStack);
+                TransferToOtherStack(currencyCollectables[^1], otherStack);
         }
 
         public void TransferToStack(CurrencyCollectable collectable)

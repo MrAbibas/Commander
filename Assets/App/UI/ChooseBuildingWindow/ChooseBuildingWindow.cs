@@ -20,6 +20,7 @@ namespace App.UI.ChooseBuildingWindow
         [SerializeField] private RectTransform _content;
         [SerializeField] private BuildingView _viewPrefab;
         [SerializeField] private SerializedDictionary<BuildingId, BuildingViewConfiguration> configs;
+        
         protected override void SubscribeToClosePanel()
         {
         }
@@ -40,7 +41,6 @@ namespace App.UI.ChooseBuildingWindow
         {
             if(IsOpened == false) return;
             onBuildingChoosed?.Invoke(buildingId);
-            CloseAnim();
         }
     }
 }

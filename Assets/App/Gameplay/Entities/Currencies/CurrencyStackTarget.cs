@@ -6,19 +6,24 @@ namespace App.Gameplay.Entities.Currencies
     public class CurrencyStackTarget : CurrencyStack
     {
         [SerializeField] private TMP_Text countText;
-        public Currency Currency { get; set; }
+        [field: SerializeField] public CurrencyType TargetCurrencyType { get; private set; }
 
         public void SetTargetCount(Currency currency)
         {
-            Currency = new Currency() { CurrencyType = currency.CurrencyType };
+            TargetCurrencyType = currency.CurrencyType;
+            Currency = new() { [currency.CurrencyType] = new Currency()
+            {
+                CurrencyType = currency.CurrencyType,
+                Count = 0
+            } };
             size = currency.Count;
-            countText.text = (size - Currency.Count).ToString();
+            countText.text = (size - Currency[TargetCurrencyType].Count).ToString();
         }
-        
-        public override void AddCurrency(CurrencyCollectable newCurrency)
+
+        public override void AddCurrencyCollectible(CurrencyCollectable newCurrency)
         {
-            Currency += newCurrency.Currency;
-            countText.text = (size - Currency.Count).ToString();
+            base.AddCurrencyCollectible(newCurrency);
+            countText.text = (size - Currency[TargetCurrencyType].Count).ToString();
             newCurrency.Despawn();
         }
     }

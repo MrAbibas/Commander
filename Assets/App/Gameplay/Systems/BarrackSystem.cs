@@ -5,6 +5,7 @@ using App.Gameplay.Entities.Barracks;
 using App.Gameplay.Entities.Characters;
 using App.UI.ChooseBuildingWindow;
 using App.UI.Core;
+using UnityEngine;
 using VContainer.Unity;
 
 namespace App.Gameplay.Systems
@@ -16,6 +17,7 @@ namespace App.Gameplay.Systems
         private readonly IBarrackFactory _barrackFactory;
         private readonly IEntityFactory _entityFactory;
         private readonly UIFactory  _uiFactory;
+        private ChooseBuildingWindow _chooseBuildingWindow;
 
         public BarrackSystem(IBarrackFactory barrackFactory,
             IEntityFactory entityFactory,
@@ -40,14 +42,15 @@ namespace App.Gameplay.Systems
 
         private void OnBarrackPlaceBoughtHandler(BarrackPlace barrackPlace)
         {
-            var window = _uiFactory.CreateWindow<ChooseBuildingWindow>();
-            window.onBuildingChoosed.AddListener((x) => OnBuildingChooseHandler(barrackPlace, x));
+            _chooseBuildingWindow = _uiFactory.CreateWindow<ChooseBuildingWindow>();
+            _chooseBuildingWindow.onBuildingChoosed.AddListener((x) => OnBuildingChooseHandler(barrackPlace, x));
         }
 
         private void OnBuildingChooseHandler(BarrackPlace barrackPlace, BuildingId buildingId)
         {
             var barrack = _barrackFactory.Create<Barrack>(buildingId);
-            barrackPlace.Build(barrack);
+            _chooseBuildingWindow.CloseAnim();
+            barrackPlace.PlaceBarrack(barrack);
         }
 
         public void Tick()
@@ -57,16 +60,26 @@ namespace App.Gameplay.Systems
                 if(barrackPlace.Barrack == null) continue;
                 
                 var barrack = barrackPlace.Barrack;
-                if(_friendlyFormation.IsFull) continue;
-                if (barrack.SpawnTimer >= barrack.SpawnDelay)
+                if (barrack.SpawnTimer < barrack.SpawnDelay)
                 {
-                    var character = _entityFactory.Create<AICharacter>(barrack.EntityId);
-                    character.transform.position = barrack.SpawnPoint.position;
-                    character.transform.rotation = barrack.SpawnPoint.rotation;
-                    _friendlyFormation.AddCharacter(character);
-                    barrack.SpawnTimer -= barrack.SpawnDelay;
+                    barrack.SpawnTimer += Time.deltaTime;
+                    continue;
                 }
+                
+                if(_friendlyFormation.IsFull) continue;
+                
+                if (barrack.SpawnTimer >= barrack.SpawnDelay)
+                    CreateCharacter(barrack);
             }
+        }
+
+        private void CreateCharacter(Barrack barrack)
+        {
+            var character = _entityFactory.Create<AICharacter>(barrack.EntityId);
+            character.transform.position = barrack.SpawnPoint.position;
+            character.transform.rotation = barrack.SpawnPoint.rotation;
+            _friendlyFormation.AddCharacter(character);
+            barrack.SpawnTimer -= barrack.SpawnDelay;
         }
     }
 }

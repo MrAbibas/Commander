@@ -24,12 +24,12 @@ namespace App.Gameplay.Entities.Barracks
 
         private void OnCurrencyAdded()
         {
-            if (Price.CurrencyType == currencyStackTarget.Currency.CurrencyType &&
-                Price.Count <= currencyStackTarget.Currency.Count)
+            if (currencyStackTarget.Currency.TryGetValue(Price.CurrencyType, out Currency currency) == false) return;
+            if (Price.Count <= currency.Count)
                 onPlaceBought?.Invoke(this);
         }
 
-        public void Build(Barrack barrack)
+        public void PlaceBarrack(Barrack barrack)
         {
             Barrack = barrack;
             currencyStackTarget.gameObject.SetActive(false);
