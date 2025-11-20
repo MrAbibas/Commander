@@ -1,4 +1,5 @@
-﻿using App.Gameplay.Entities.Currencies;
+﻿using System.Collections.Generic;
+using App.Gameplay.Entities.Currencies;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,6 +11,7 @@ namespace App.Gameplay.Entities.Barracks
         [SerializeField] private CurrencyStackTarget currencyStackTarget;
         public Barrack Barrack { get; private set; }
         [field: SerializeField] public Currency Price { get; private set; }
+        [field: SerializeField] public List<BuildingId> AvailableBarracks { get; private set; }
 
         private void Start()
         {
@@ -24,7 +26,7 @@ namespace App.Gameplay.Entities.Barracks
 
         private void OnCurrencyAdded()
         {
-            if (currencyStackTarget.Currency.TryGetValue(Price.CurrencyType, out Currency currency) == false) return;
+            if (currencyStackTarget.Currencies.TryGetValue(Price.CurrencyType, out Currency currency) == false) return;
             if (Price.Count <= currency.Count)
                 onPlaceBought?.Invoke(this);
         }

@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
 namespace App.Gameplay.Entities.Currencies
@@ -11,19 +12,22 @@ namespace App.Gameplay.Entities.Currencies
         public void SetTargetCount(Currency currency)
         {
             TargetCurrencyType = currency.CurrencyType;
-            Currency = new() { [currency.CurrencyType] = new Currency()
+            Currencies = new()
             {
-                CurrencyType = currency.CurrencyType,
-                Count = 0
-            } };
+                [currency.CurrencyType] = new Currency()
+                {
+                    CurrencyType = currency.CurrencyType,
+                    Count = 0
+                }
+            };
             size = currency.Count;
-            countText.text = (size - Currency[TargetCurrencyType].Count).ToString();
+            countText.text = (size - Currencies[TargetCurrencyType].Count).ToString();
         }
 
         public override void AddCurrencyCollectible(CurrencyCollectable newCurrency)
         {
             base.AddCurrencyCollectible(newCurrency);
-            countText.text = (size - Currency[TargetCurrencyType].Count).ToString();
+            countText.text = (size - Currencies[TargetCurrencyType].Count).ToString();
             newCurrency.Despawn();
         }
     }

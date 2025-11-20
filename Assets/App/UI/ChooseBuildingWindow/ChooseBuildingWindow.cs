@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using App.Gameplay.Entities.Barracks;
 using App.UI.Core;
+using App.Utils;
 using AYellowpaper.SerializedCollections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,7 +21,13 @@ namespace App.UI.ChooseBuildingWindow
         [SerializeField] private RectTransform _content;
         [SerializeField] private BuildingView _viewPrefab;
         [SerializeField] private SerializedDictionary<BuildingId, BuildingViewConfiguration> configs;
-        
+
+        public override void Init()
+        {
+            base.Init();
+            onBuildingChoosed = new UnityEvent<BuildingId>();
+        }
+
         protected override void SubscribeToClosePanel()
         {
         }
@@ -28,6 +35,7 @@ namespace App.UI.ChooseBuildingWindow
         public void Open(List<BuildingId> buildings)
         {
             base.Open();
+            _content.DestroyAllChildren();
             foreach (var buildingId in buildings)
             {
                 var building = Instantiate(_viewPrefab, _content);

@@ -11,7 +11,7 @@ namespace App.Gameplay.Entities.Currencies
         public UnityEvent onCurrencyAdded = new ();
         public UnityEvent onCurrencyRemoved  = new ();
         
-        public Dictionary<CurrencyType,Currency> Currency { get; protected set; }
+        public Dictionary<CurrencyType,Currency> Currencies { get; protected set; }
         [SerializeField]
         protected List<CurrencyCollectable> currencyCollectables = new();
         [SerializeField]
@@ -30,7 +30,7 @@ namespace App.Gameplay.Entities.Currencies
         private void Start()
         {
             currencyCollectables = GetComponentsInChildren<CurrencyCollectable>().ToList();
-            Currency = new ();
+            Currencies = new ();
             foreach (var collectable in currencyCollectables)
                 AddCurrency(collectable.Currency);
         }
@@ -42,18 +42,18 @@ namespace App.Gameplay.Entities.Currencies
 
         public void AddCurrency(Currency currency)
         {
-            if (Currency.TryGetValue(currency.CurrencyType, out Currency currencyValue))
+            if (Currencies.TryGetValue(currency.CurrencyType, out Currency currencyValue))
                 currencyValue += currency;
             else
-                Currency.Add(currency.CurrencyType,
+                Currencies.Add(currency.CurrencyType,
                     new Currency() { CurrencyType = currency.CurrencyType, Count = currency.Count });
-
+            
             onCurrencyAdded.Invoke();
         }
 
         public void RemoveCurrency(Currency currency)
         {
-            if (Currency.TryGetValue(currency.CurrencyType, out Currency currencyValue) == false) return;
+            if (Currencies.TryGetValue(currency.CurrencyType, out Currency currencyValue) == false) return;
 
             currencyValue -= currency;
             onCurrencyRemoved.Invoke();

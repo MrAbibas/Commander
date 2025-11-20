@@ -44,6 +44,7 @@ namespace App.Gameplay.Systems
         {
             _chooseBuildingWindow = _uiFactory.CreateWindow<ChooseBuildingWindow>();
             _chooseBuildingWindow.onBuildingChoosed.AddListener((x) => OnBuildingChooseHandler(barrackPlace, x));
+            _chooseBuildingWindow.Open(barrackPlace.AvailableBarracks);
         }
 
         private void OnBuildingChooseHandler(BarrackPlace barrackPlace, BuildingId buildingId)

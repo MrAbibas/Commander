@@ -93,7 +93,7 @@ MonoBehaviour:
   OnClick:
     m_PersistentCalls:
       m_Calls: []
-  icon: {fileID: 2801648135541558378}
+  icon: {fileID: 1300448847904655900}
   text: {fileID: 4788185826956672111}
 --- !u!1 &2067723333809802491
 GameObject:
