@@ -13,7 +13,10 @@ namespace App.Gameplay.Entities.Characters
         public bool IsAlive { get; set; }
 
         public virtual void HandleMovement(){}
-
+        private void Update()
+        {
+            StateMachine?.Update();
+        }
         public abstract bool IsMoving();
         public bool HasTarget() => Target != null;
         public void SetTarget(Character target) => Target = target;

@@ -34,22 +34,12 @@ namespace App.Gameplay.Entities.Characters.Players
             StateMachine.AddTransition(attackState, runState, new FuncPredicate(IsMoving));
             StateMachine.SetState(idleState);
         }
-
-        private void Update()
-        {
-            
-            StateMachine.Update();
-        }
         
         public override bool IsMoving() => _input.MoveDirection != Vector2.zero;
 
         public override void HandleMovement()
         {
             Vector2 input = _input.MoveDirection;
-            
-            // _moveDirection = new Vector3(input.x, 0f, input.y);
-            // _moveDirection = transform.TransformDirection(_moveDirection);
-            // _moveDirection *= speed;
             Vector3 lookDirection = new Vector3(input.x, 0f, input.y);
             Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
             transform.rotation = targetRotation;
