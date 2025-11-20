@@ -15,7 +15,7 @@ namespace App.Factories
         public BuildingFactory(IObjectResolver objectResolver, IConfigurationService configurationService)
         {
             _objectResolver = objectResolver;
-            BuildingsConfiguration buildingsConfiguration =
+            _buildingsConfiguration =
                 configurationService.GetConfiguration<BuildingsConfiguration>();
         }
 

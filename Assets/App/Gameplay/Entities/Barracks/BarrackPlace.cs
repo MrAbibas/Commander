@@ -34,6 +34,9 @@ namespace App.Gameplay.Entities.Barracks
         public void PlaceBarrack(Barrack barrack)
         {
             Barrack = barrack;
+            barrack.transform.SetParent(transform);
+            barrack.transform.localPosition = Vector3.zero;
+            barrack.transform.localRotation = Quaternion.identity;
             currencyStackTarget.gameObject.SetActive(false);
         }
     }
