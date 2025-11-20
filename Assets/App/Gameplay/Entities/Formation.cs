@@ -29,12 +29,14 @@ namespace App.Gameplay.Entities
         {
             if (Characters.Count >= points.Count) return;
             Characters.Add(character);
+            character.PlaceInFormation = points[Characters.Count - 1].transform;
             character.SetTargetPosition(points[Characters.Count - 1].position);
         }
 
         public void RemoveCharacter(AICharacter character)
         {
             Characters.Remove(character);
+            character.PlaceInFormation = null;
             UpdateCharactersPositions();
         }
 
@@ -47,7 +49,10 @@ namespace App.Gameplay.Entities
         private void UpdateCharactersPositions()
         {
             for (int i = 0; i < Characters.Count; i++)
+            {
+                Characters[i].PlaceInFormation = points[i].transform;
                 Characters[i].SetTargetPosition(points[i].position);
+            }
         }
     }
 }

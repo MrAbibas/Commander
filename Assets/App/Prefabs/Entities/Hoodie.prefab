@@ -62,7 +62,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3369114963710746043, guid: 9f135e7799e2465429220658865321a7, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -4099525059285033662}
+      addedObject: {fileID: 1850257140000217783}
     - targetCorrespondingSourceObject: {fileID: 3369114963710746043, guid: 9f135e7799e2465429220658865321a7, type: 3}
       insertIndex: -1
       addedObject: {fileID: -8491171731349882511}
@@ -72,7 +72,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3369114963710746043, guid: 9f135e7799e2465429220658865321a7, type: 3}
   m_PrefabInstance: {fileID: 3343214164759740407}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-4099525059285033662
+--- !u!114 &1850257140000217783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,13 +81,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 46438579347415628}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14312fff0a1a48a3a4b93661f7fc372c, type: 3}
+  m_Script: {fileID: 11500000, guid: c16dcbe673a24ccb8004aba36d118e35, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: App::App.Gameplay.Entities.Characters.AICharacter
-  <EntityId>k__BackingField: 0
+  m_EditorClassIdentifier: App::App.Gameplay.Entities.Characters.FriendlyAICharacter
+  <EntityId>k__BackingField: 2
   speed: 3
   animator: {fileID: 46438579347415629}
-  agent: {fileID: -8491171731349882511}
+  <Agent>k__BackingField: {fileID: -8491171731349882511}
 --- !u!195 &-8491171731349882511
 NavMeshAgent:
   m_ObjectHideFlags: 0

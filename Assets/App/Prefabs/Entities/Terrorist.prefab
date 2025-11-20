@@ -103,7 +103,7 @@ MonoBehaviour:
   <EntityId>k__BackingField: 1
   speed: 3
   animator: {fileID: 296001928125328713}
-  agent: {fileID: 3170628441573344454}
+  <Agent>k__BackingField: {fileID: 3170628441573344454}
 --- !u!195 &3170628441573344454
 NavMeshAgent:
   m_ObjectHideFlags: 0
