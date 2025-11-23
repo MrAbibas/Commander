@@ -2457,6 +2457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 364854387}
   - component: {fileID: 364854386}
+  - component: {fileID: 364854388}
   m_Layer: 0
   m_Name: StartFightTrigger
   m_TagString: Untagged
@@ -2501,6 +2502,18 @@ Transform:
   - {fileID: 873332980}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &364854388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 364854385}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d000dbda3f347d42b1050b83ceeca8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: App::App.Gameplay.Triggers.StartFight.StartFightTrigger
 --- !u!1 &378827106
 GameObject:
   m_ObjectHideFlags: 0
@@ -23195,7 +23208,8 @@ MonoBehaviour:
   parentReference:
     TypeName: App.LifetimeScopes.GameLifetimeScope
   autoRun: 1
-  autoInjectGameObjects: []
+  autoInjectGameObjects:
+  - {fileID: 364854385}
   _playerSpawnPoint: {fileID: 1151222203}
   _barracks:
   - {fileID: 1286908079}

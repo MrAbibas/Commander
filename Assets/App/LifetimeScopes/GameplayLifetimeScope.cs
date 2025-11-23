@@ -8,6 +8,7 @@ using App.Gameplay.Level;
 using App.Gameplay.Providers;
 using App.Gameplay.Systems;
 using App.Gameplay.Triggers;
+using App.Gameplay.Triggers.StartFight;
 using App.UI;
 using App.UI.Core;
 using Unity.Cinemachine;
@@ -47,6 +48,7 @@ namespace App.LifetimeScopes
             builder.Register<UIFactory>(Lifetime.Singleton);
 
             builder.RegisterEntryPoint<TriggerEventBus>();
+            builder.RegisterEntryPoint<StartFightHandler>();
         }
     }
 }

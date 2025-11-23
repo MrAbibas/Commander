@@ -1,4 +1,5 @@
 ﻿using System;
+using App.Gameplay.Systems;
 using App.UI.Core;
 using App.UI.StartFightPopUp;
 using VContainer.Unity;
@@ -9,11 +10,14 @@ namespace App.Gameplay.Triggers.StartFight
     {
         private readonly TriggerEventBus _eventBus;
         private readonly UIFactory  _uiFactory;
+        private readonly CombatSystem _combatSystem;
         private StartFightPopUp _popUp;
         
-        public StartFightHandler(TriggerEventBus eventBus)
+        public StartFightHandler(TriggerEventBus eventBus, UIFactory uiFactory, CombatSystem combatSystem)
         {
             _eventBus = eventBus;
+            _uiFactory = uiFactory;
+            _combatSystem = combatSystem;
         }
 
         public void Initialize()
@@ -24,6 +28,8 @@ namespace App.Gameplay.Triggers.StartFight
 
         private void OnPlayerEnter(OnPlayerEnterStartFightTriggerEvent obj)
         {
+            if(_combatSystem.IsFighting) return;
+            
             if (_popUp == null)
                 _popUp = _uiFactory.CreateWindow<StartFightPopUp>();
 
