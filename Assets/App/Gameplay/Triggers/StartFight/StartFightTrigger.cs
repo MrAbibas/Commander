@@ -1,7 +1,5 @@
-using System;
 using App.Gameplay.Entities.Characters.Players;
 using UnityEngine;
-using VContainer.Unity;
 
 namespace App.Gameplay.Triggers.StartFight
 {
