@@ -2458,7 +2458,7 @@ GameObject:
   - component: {fileID: 364854387}
   - component: {fileID: 364854386}
   m_Layer: 0
-  m_Name: StartFightPlace
+  m_Name: StartFightTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

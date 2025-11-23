@@ -7,6 +7,7 @@ using App.Gameplay.GameplayStates.States;
 using App.Gameplay.Level;
 using App.Gameplay.Providers;
 using App.Gameplay.Systems;
+using App.Gameplay.Triggers;
 using App.UI;
 using App.UI.Core;
 using Unity.Cinemachine;
@@ -44,6 +45,8 @@ namespace App.LifetimeScopes
             
             builder.Register<UIAssetsProvider>(Lifetime.Singleton);
             builder.Register<UIFactory>(Lifetime.Singleton);
+
+            builder.RegisterEntryPoint<PlayerTriggerEventBus>();
         }
     }
 }
