@@ -1,11 +1,13 @@
+using System;
 using App.Gameplay.Entities.Characters.Players;
 using UnityEngine;
+using VContainer.Unity;
 
-namespace App.Gameplay.Triggers
+namespace App.Gameplay.Triggers.StartFight
 {
     public class StartFightTrigger : MonoBehaviour
     {
-        private PlayerTriggerEventBus _eventBus;
+        private TriggerEventBus _eventBus;
         
         private void OnTriggerEnter(Collider other)
         {

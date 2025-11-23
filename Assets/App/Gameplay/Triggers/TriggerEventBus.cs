@@ -2,7 +2,7 @@
 
 namespace App.Gameplay.Triggers
 {
-    public class PlayerTriggerEventBus : EventBus<IPlayerTriggerEvent>
+    public class TriggerEventBus : EventBus<ITriggerEvent>
     {
         
     }

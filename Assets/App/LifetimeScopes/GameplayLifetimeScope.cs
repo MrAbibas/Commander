@@ -46,7 +46,7 @@ namespace App.LifetimeScopes
             builder.Register<UIAssetsProvider>(Lifetime.Singleton);
             builder.Register<UIFactory>(Lifetime.Singleton);
 
-            builder.RegisterEntryPoint<PlayerTriggerEventBus>();
+            builder.RegisterEntryPoint<TriggerEventBus>();
         }
     }
 }
