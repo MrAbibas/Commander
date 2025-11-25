@@ -13,12 +13,12 @@ namespace App.Gameplay.Entities.Characters
             var attackState = new AttackState(this, animator);
             
             StateMachine.AddTransition(idleState, runState, new FuncPredicate(IsMoving));
-            StateMachine.AddTransition(idleState, attackState, new FuncPredicate(() => IsMoving() == false && HasTarget()));
+            StateMachine.AddTransition(idleState, attackState, new FuncPredicate(HasTarget));
             
             StateMachine.AddTransition(runState, idleState,new FuncPredicate(() => IsMoving() == false));
             
             StateMachine.AddTransition(attackState, idleState,new FuncPredicate(() => IsMoving() == false && HasTarget() == false));
-            StateMachine.AddTransition(attackState, runState, new FuncPredicate(IsMoving));
+            StateMachine.AddTransition(attackState, runState, new FuncPredicate(() => IsMoving() && HasTarget() == false));
             StateMachine.SetState(idleState);
         }
     }

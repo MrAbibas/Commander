@@ -410,3 +410,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6618fe000ef843afb805bc7727f3ccbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: App::App.UI.StartFightPopUp.StartFightPopUp
+  fightButton: {fileID: 3824740595163838520}

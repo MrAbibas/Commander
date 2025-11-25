@@ -18,18 +18,21 @@ namespace App.Gameplay.Systems
         private readonly IEntityFactory _entityFactory;
         private readonly UIFactory  _uiFactory;
         private ChooseBuildingWindow _chooseBuildingWindow;
+        private ICombatSystem _combatSystem;
 
         public BarrackSystem(IBarrackFactory barrackFactory,
             IEntityFactory entityFactory,
             List<BarrackPlace> barrackPlaces,
             Formation friendlyFormation,
-            UIFactory uiFactory)
+            UIFactory uiFactory,
+            ICombatSystem combatSystem)
         {
             _barrackFactory = barrackFactory;
             _entityFactory = entityFactory;
             _barrackPlaces = barrackPlaces;
             _friendlyFormation = friendlyFormation;
             _uiFactory = uiFactory;
+            _combatSystem = combatSystem;
         }
 
         public void Initialize()
@@ -68,6 +71,7 @@ namespace App.Gameplay.Systems
                 }
                 
                 if(_friendlyFormation.IsFull) continue;
+                if(_combatSystem.IsFighting) continue;
                 
                 if (barrack.SpawnTimer >= barrack.SpawnDelay)
                     CreateCharacter(barrack);

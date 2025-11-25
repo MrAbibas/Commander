@@ -23,6 +23,7 @@ namespace App.LifetimeScopes
         [SerializeField] private PlayerSpawnPoint _playerSpawnPoint;
         [SerializeField] private List<BarrackPlace> _barracks;
         [SerializeField] private Formation _friendlyFormation;
+        [SerializeField] private List<Formation> _enemiesFormations;
         [SerializeField] private CinemachineCamera _camera;
         
         protected override void Configure(IContainerBuilder builder)
@@ -30,6 +31,7 @@ namespace App.LifetimeScopes
             builder.RegisterInstance(_playerSpawnPoint);
             builder.RegisterInstance(_camera);
             builder.RegisterInstance(_friendlyFormation);
+            builder.RegisterInstance(_enemiesFormations);
             builder.RegisterInstance(_barracks);
             builder.Register<LoadLevelGameplayState>(Lifetime.Singleton);
             builder.Register<MainLoopGameplayState>(Lifetime.Singleton);
@@ -42,13 +44,14 @@ namespace App.LifetimeScopes
             builder.Register<PlayerInputSystem>(Lifetime.Singleton).AsImplementedInterfaces();
 
             builder.Register<BuildingFactory>(Lifetime.Singleton).AsImplementedInterfaces();
-            builder.RegisterEntryPoint<BarrackSystem>();
+            builder.RegisterEntryPoint<BarrackSystem>().AsSelf();
+            builder.RegisterEntryPoint<CombatSystem>().AsSelf();
             
             builder.Register<UIAssetsProvider>(Lifetime.Singleton);
             builder.Register<UIFactory>(Lifetime.Singleton);
 
-            builder.RegisterEntryPoint<TriggerEventBus>();
-            builder.RegisterEntryPoint<StartFightHandler>();
+            builder.RegisterEntryPoint<TriggerEventBus>().AsSelf();
+            builder.RegisterEntryPoint<StartFightHandler>().AsSelf();
         }
     }
 }

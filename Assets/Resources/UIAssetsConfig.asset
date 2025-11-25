@@ -19,3 +19,7 @@ MonoBehaviour:
         _assemblyQualifiedName: App.UI.ChooseBuildingWindow.ChooseBuildingWindow,
           App, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       Value: {fileID: 2019422121945091110, guid: 641caf3cb102371439d728896b37cd89, type: 3}
+    - Key:
+        _assemblyQualifiedName: App.UI.StartFightPopUp.StartFightPopUp, App, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      Value: {fileID: 91285049617015428, guid: 28a50264118dae44c8bba77ed188f599, type: 3}

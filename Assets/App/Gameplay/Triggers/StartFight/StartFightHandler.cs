@@ -35,18 +35,26 @@ namespace App.Gameplay.Triggers.StartFight
 
             if (_popUp.IsOpened == false)
                 _popUp.Open();
+
+            _popUp.OnClick.AddListener(OnFightButtonClickHandler);
         }
-        
+
+        private void OnFightButtonClickHandler()
+        {
+            _combatSystem.StartFight();
+            _popUp.CloseAnim();
+        }
+
         private void OnPlayerExit(OnPlayerExitStartFightTriggerEvent obj)
         {
             if(_popUp != null)
-                _popUp.Close();
+                _popUp.CloseAnim();
         }
 
         public void Dispose()
         {
             if(_popUp != null)
-                _popUp.Close();
+                _popUp.CloseAnim();
             
             _eventBus.Unsubscribe<OnPlayerEnterStartFightTriggerEvent>(OnPlayerEnter);
             _eventBus.Unsubscribe<OnPlayerExitStartFightTriggerEvent>(OnPlayerExit);

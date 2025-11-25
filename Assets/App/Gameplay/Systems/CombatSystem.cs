@@ -3,6 +3,7 @@ using App.Gameplay.Configurations;
 using App.Gameplay.Entities;
 using App.Gameplay.Entities.Characters;
 using App.Gameplay.Providers;
+using App.Services;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -20,11 +21,13 @@ namespace App.Gameplay.Systems
 
         public CombatSystem(List<Formation> enemyFormations,
             Formation friendlyFormation,
-            IPlayerProvider playerProvider)
+            IPlayerProvider playerProvider,
+            IConfigurationService configurationService)
         {
             _enemyFormations = enemyFormations;
             _friendlyFormation = friendlyFormation;
             _playerProvider = playerProvider;
+            _combatConfiguration = configurationService.GetConfiguration<CombatConfiguration>();
         }
 
         public void Update()
